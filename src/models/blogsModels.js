@@ -1,54 +1,37 @@
-//  const { ObjectID } = require('bson');
-const { ObjectID } = require('bson');
-const mongoose = require('mongoose');
-// const { boolean } = require('webidl-conversions');
+const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId
 
-const blogsSchema = new mongoose.Schema( {
-
-
+const blogSchema = new mongoose.Schema({
 title: {
-    type: string,
-    required:true
+type: String,
+require: true
 },
-
-
-body: 
-{   
-    type : string,
-    required:true
-   }, 
-
+body: {
+type: String,
+require: true
+},
 authorId: {
-            type:ObjectId,
-            ref:"Author"
+type: ObjectId,
+ref: "Author",
+require: true
 },
-    
-
-tags: {
-    type:[String]
+tags: [String],
+category: {
+type: String,
+require: true
 },
-
- category:{
-    type : [String]
- },
-   
-
-subcategory: {
-        type:[string]
+subCategory: [String],
+isDeleted: {
+type: Boolean,
+default: false
 },
+deletedAt:Date,
+isPublished: {
+type: Boolean,
+default: false
+},
+publishedAt:Date
 
- isDeleted:{
-    type:Boolean,
-    default:false
- } ,
- 
-   isPublished: {
-    type: Boolean,
-    default:false
-}
 }, { timestamps: true });
 
-
-
-module.exports = mongoose.model('blogsSchema', blogsSchema)
+module.exports = mongoose.model('Blog', blogSchema)

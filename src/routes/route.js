@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const authorController= require("../controllers/authorControllers")
+const authorController= require("../controllers/authorControllers");
+const blogsControllers=require("../controllers/blogsController")
+// const blogsModels = require('../models/blogsModels');
 // const bookController= require("../controllers/bookController")
 
 router.get("/test-me", function (req, res) {
@@ -9,6 +11,8 @@ router.get("/test-me", function (req, res) {
 })
 
 router.post("/createAuthor", authorController.createAuthor  )
+router.post("/createBlog",blogsControllers.createBlog)
+
 
 
 
