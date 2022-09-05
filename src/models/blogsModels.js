@@ -39,12 +39,12 @@ subcategory: {
 },
 
  isDeleted:{
-    type:boolean,
+    type:Boolean,
     default:false
  } ,
  
    isPublished: {
-    type: boolean,
+    type: Boolean,
     default:false
 }
 }, { timestamps: true });
