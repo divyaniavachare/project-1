@@ -1,4 +1,5 @@
-// const { ObjectID } = require('bson');
+//  const { ObjectID } = require('bson');
+const { ObjectID } = require('bson');
 const mongoose = require('mongoose');
 // const { boolean } = require('webidl-conversions');
 const ObjectId = mongoose.Schema.Types.ObjectId
@@ -19,17 +20,17 @@ body:
    }, 
 
 authorId: {
-            type:ObjectID,
+            type:ObjectId,
             ref:"Author"
 },
     
 
 tags: {
-    type:['string']
+    type:[String]
 },
 
  category:{
-    type : ['string']
+    type : [String]
  },
    
 
