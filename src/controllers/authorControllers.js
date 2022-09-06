@@ -1,11 +1,8 @@
-const authorModels = require('../models/authorModels');
-
-
-
-
+const authorModel = require('../models/authorModels');
 
 const createAuthor = async function(req, res) {
-  try {
+  try { 
+
   let data = req.body;
   let savedData = await authorModel.create(data)
   res.status(201).send( {msg: savedData})
@@ -13,6 +10,8 @@ const createAuthor = async function(req, res) {
   res.status(500).send({msg: err.message})
   }
   }
+
+  
   
 
 

@@ -12,13 +12,9 @@ router.get("/test-me", function (req, res) {
 
 router.post("/createAuthor", authorController.createAuthor  )
 router.post("/createBlog",blogsControllers.createBlog)
-
-
-
-
-
-
-
+router.get("/blog", blogsControllers.getBlog)
+router.put("/update/:blogId",blogsControllers.updatedBlogger)
+router.delete ("/blogs/:blogId",blogsControllers.deleteBlog)
 
 
 
