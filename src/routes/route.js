@@ -1,33 +1,21 @@
 const express = require('express');
 const router = express.Router();
-
-const authorController= require("../controllers/authorControllers");
-const blogsControllers=require("../controllers/blogsController")
-// const blogsModels = require('../models/blogsModels');
-// const bookController= require("../controllers/bookController")
-
-router.get("/test-me", function (req, res) {
-    res.send("My first ever api!")
-})
-
-router.post("/createAuthor", authorController.createAuthor  )
-router.post("/createBlog",blogsControllers.createBlog)
-router.get("/blog", blogsControllers.getBlog)
-router.put("/update/:blogId",blogsControllers.updatedBlogger)
-router.delete ("/blogs/:blogId",blogsControllers.deleteBlog)
+const authControl= require("../controllers/authorControllers")
+const blogControl=require("../controllers/blogsController")
 
 
+router.post("/authors", authControl.createAuthor)
 
+router.post("/blogs", blogControl.createBlog)
 
-// const express = require('express');
-// const router = express.Router();
-// const authorControllers= require("../controllers/authorControllers")
-// // const commonMV=require("../middleware/auth")
+router.get("/blog", blogControl.getBlog)
 
+// router.put("/update/:blogId", blogControl.updateBlog)
+router.put("/update/:blogId",blogControl.updateBlog)
 
+router.delete("/deleteBlog/:blogId",blogControl.deleteBlog)
 
+router.delete("/deleteBlogByQuery",blogControl.deleteBlogByQuery)
 
-
-// router.post('/Authors',authorControllers.Author)
 
 module.exports = router;
