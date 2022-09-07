@@ -1,5 +1,4 @@
-const authorModel = require("../models/authorModel");
-const jwt = require("jsonwebtoken");
+
 
 //----------------------------------------------------------------------------------//
 // This is the first api to create an author in database with email validation.
@@ -51,7 +50,22 @@ const doLogin = async function (req, res) {
   }
 };
 
+
 //---------------------------------------------------------------------------------//
 
 module.exports.createAuthor = createAuthor;
 module.exports.doLogin = doLogin;
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

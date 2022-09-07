@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
 const authorControllers = require('../controllers/authorControllers')
 const blogControllers = require('../controllers/blogControllers') 
 const appMiddleware = require('../middleWares/appMiddleware')
+
 
 //Project 1 - Phase - 1
 // router.post('/Authors',authorController.createAuthor);
@@ -16,5 +18,6 @@ router.delete('/deleteUpdate2',appMiddleware.getAuthorDetails, blogControllers.d
 
 //Project 1 - Phase - 2
 router.post('/doLogin',authorControllers.doLogin)
+
 
 module.exports = router;
