@@ -1,4 +1,5 @@
-
+const authorModels = require("../models/authorModel");
+const jwt = require("jsonwebtoken");
 
 //----------------------------------------------------------------------------------//
 // This is the first api to create an author in database with email validation.
@@ -9,7 +10,7 @@ const createAuthor = async function (req, res) {
     let checkEmail = regex.test(req.body.email);
     if (checkEmail) {
       let myAuthor = req.body;
-      let authorSaved = await authorModel.create(myAuthor);
+      let authorSaved = await authorModels.create(myAuthor);
       res.status(200).send({status:true, data: authorSaved });
     } else {
       res.status(400).send({status:false, message: "Please provide a Valid Email Id"});
@@ -26,7 +27,7 @@ const doLogin = async function (req, res) {
   try {
     userEmail = req.body.email;
     userPassword = req.body.password;
-    let user = await authorModel.findOne({
+    let user = await authorModels.findOne({
       email: userEmail,
       password: userPassword,
       isDeleted: false,
@@ -50,22 +51,7 @@ const doLogin = async function (req, res) {
   }
 };
 
-
 //---------------------------------------------------------------------------------//
 
 module.exports.createAuthor = createAuthor;
 module.exports.doLogin = doLogin;
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
