@@ -1,22 +1,26 @@
-const express = require('express');
-const router = express.Router();
-
-const authorControllers = require('../controllers/authorControllers')
-const blogControllers = require('../controllers/blogControllers') 
-const appMiddleware = require('../middleWares/appMiddleware')
+const express=require('express')
+const router = express.Router()
+ const authorController=require('../controller/authorController')
 
 
-//Project 1 - Phase - 1
-router.post('/Authors',authorControllers.createAuthor);
-router.post('/createBlog',appMiddleware.getAuthorDetails,appMiddleware.authorization,blogControllers.createBlog)
-router.get('/getBlog',appMiddleware.getAuthorDetails,appMiddleware.authorization, blogControllers.returnBlogsFiltered) //
-router.put('/getUpdate/:id',appMiddleware.getAuthorDetails ,appMiddleware.authorization, blogControllers.updateData);
-router.delete('/deleteUpdate/:id',appMiddleware.getAuthorDetails,appMiddleware.authorization, blogControllers.deleteBlog);
-router.delete('/deleteUpdate2',appMiddleware.getAuthorDetails,appMiddleware.authorization, blogControllers.deleteSpecific);
-
-//Project 1 - Phase - 2
-// router.post('/Login',authorControllers.loginAuthor)
-router.post('/Login',authorControllers.loginAuthor)
+const blogController=require('../controller/blogController')
+const middleWare=require('../middleWare/auth')
 
 
-module.exports = router;
+//-------------------------unprotected apis----------------------//
+
+router.post('/authors',authorController.createAuthor);
+router.post('/login',authorController.login);
+
+//--------------------------protected apis----------------------------------------//
+
+router.post('/blogs',blogController.createBlog);
+router.get('/blogs',blogController.getSpecificAllBlogs);
+router.put('/blogs/:blogId',middleWare.authorization,blogController.updateBlog)
+router.delete('/blogs/:blogId',middleWare.authorization,blogController.deleteBlog)
+router.delete('/blogs',middleWare.authorization,blogController.deleteparams)
+
+
+
+
+module.exports=router
