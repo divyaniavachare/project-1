@@ -15,7 +15,8 @@ router.delete('/deleteUpdate/:id',appMiddleware.getAuthorDetails,appMiddleware.a
 router.delete('/deleteUpdate2',appMiddleware.getAuthorDetails,appMiddleware.authorization, blogControllers.deleteSpecific);
 
 //Project 1 - Phase - 2
-router.post('/doLogin',appMiddleware.getAuthorDetails,appMiddleware.authorization,authorControllers.doLogin)
+// router.post('/Login',authorControllers.loginAuthor)
+router.post('/Login',authorControllers.loginAuthor)
 
 
 module.exports = router;
