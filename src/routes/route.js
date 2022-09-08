@@ -9,12 +9,17 @@ const middleWare=require('../middleWare/auth')
 
 //-------------------------unprotected apis----------------------//
 
+
 router.post('/authors',authorController.createAuthor);
 router.post('/login',authorController.login);
 
-//--------------------------protected apis----------------------------------------//
+// --------------------------protected apis----------------------------------------//
 
 router.post('/blogs',middleWare.authentication,blogController.createBlog);
+
+//--------------------------protected apis----------------------------------------//
+
+
 router.get('/blogs',middleWare.authentication,blogController.getSpecificAllBlogs);
 router.put('/blogs/:blogId',middleWare.authorization,blogController.updateBlog)
 router.delete('/blogs/:blogId',middleWare.authorization,blogController.deleteBlog)
