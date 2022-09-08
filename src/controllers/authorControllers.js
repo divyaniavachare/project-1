@@ -3,22 +3,30 @@ const jwt = require("jsonwebtoken");
 
 //----------------------------------------------------------------------------------//
 // This is the first api to create an author in database with email validation.
-
+const isValid = function (value) {
+  if (typeof value === 'undefined' || value === null) return false
+  if (typeof value === 'string' && value.trim().length === 0) return false
+  return true;
+}
+const isValidRequestBody = function (requestBody) {
+  return Object.keys(requestBody).length > 0
+}
+const isValidEmail=function(email){
+  return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+}
+const regexValidator=function(value){
+  let regex= /^[a-zA-Z]+([\s][a-zA-Z]+)*$/
+  return regex.test(value)
+}
 const createAuthor = async function (req, res) {
-  try {
-    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    let checkEmail = regex.test(req.body.email);
-    if (checkEmail) {
-      let myAuthor = req.body;
-      let authorSaved = await authorModels.create(myAuthor);
-      res.status(200).send({status:true, data: authorSaved });
-    } else {
-      res.status(400).send({status:false, message: "Please provide a Valid Email Id"});
+    try {
+        let data = req.body
+        let savedData = await authorModel.create(data)
+        res.status(201).send({ msg: savedData })
+    } catch (error) {
+        res.status(500).send({ status: false, message: error.message })
     }
-  } catch (error) {
-    res.status(500).send({ status: false, msg: error.message });
-  }
-};
+}
 
 //----------------------------------------------------------------------------------//
 // This is the login api of phase 2 for the authentication.
@@ -37,7 +45,7 @@ const doLogin = async function (req, res) {
       let fname = user.fname;
       let lname = user.lname;
       let payload = { userId: user._id, email: user.email };
-      const generatedToken = jwt.sign(payload, "Radium Star");
+      const generatedToken = jwt.sign(payload, "FunctionUp Plutonium");
       res.status(200).send({
         Message: fname + " " + lname + " you have logged in Succesfully",
         YourId: user._id,
