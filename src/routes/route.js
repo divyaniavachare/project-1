@@ -14,8 +14,8 @@ router.post('/login',authorController.login);
 
 //--------------------------protected apis----------------------------------------//
 
-router.post('/blogs',blogController.createBlog);
-router.get('/blogs',blogController.getSpecificAllBlogs);
+router.post('/blogs',middleWare.authentication,blogController.createBlog);
+router.get('/blogs',middleWare.authentication,blogController.getSpecificAllBlogs);
 router.put('/blogs/:blogId',middleWare.authorization,blogController.updateBlog)
 router.delete('/blogs/:blogId',middleWare.authorization,blogController.deleteBlog)
 router.delete('/blogs',middleWare.authorization,blogController.deleteparams)

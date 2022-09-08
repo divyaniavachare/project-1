@@ -1,4 +1,8 @@
 const jwt = require('jsonwebtoken')
+const blogModel = require('../model/blogModel')
+const mongoose=require('mongoose')
+
+
 
 //-----------------------------------------------------------------------------//
 // This is the middleware will be used for the authentication purpose
