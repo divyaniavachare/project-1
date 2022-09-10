@@ -1,31 +1,23 @@
-const express=require('express')
-const router = express.Router()
- const authorController=require('../controller/authorController')
+const express = require('express');
+const router = express.Router();
+const authControl= require("../controllers/authorController")
+const blogControl=require("../controllers/blogController")
+const middlewareCV=require("../middleware/middleware")
 
 
-const blogController=require('../controller/blogController')
-const middleWare=require('../middleWare/auth')
+router.post("/authors", authControl.createAuthor)
+
+router.post("/blogs",middlewareCV.authentication,blogControl.createBlog)
+
+router.get("/blog",middlewareCV.authentication, blogControl.getBlog)
+
+router.put("/update/:blogId",middlewareCV.authentication,middlewareCV.authorization, blogControl.updateBlog)
+
+router.delete("/deleteBlog/:blogId",middlewareCV.authentication,middlewareCV.authorization,blogControl.deleteBlog)
+
+router.delete("/deleteBlogByQuery",middlewareCV.authentication,middlewareCV.authorization,blogControl.deleteBlogByQuery)
+
+router.post("/login",authControl.loginAuthor)
 
 
-//-------------------------unprotected apis----------------------//
-
-
-router.post('/authors',authorController.createAuthor);
-router.post('/login',authorController.login);
-
-// --------------------------protected apis----------------------------------------//
-
-router.post('/blogs',middleWare.authentication,blogController.createBlog);
-
-//--------------------------protected apis----------------------------------------//
-
-
-router.get('/blogs',middleWare.authentication,blogController.getSpecificAllBlogs);
-router.put('/blogs/:blogId',middleWare.authorization,blogController.updateBlog)
-router.delete('/blogs/:blogId',middleWare.authorization,blogController.deleteBlog)
-router.delete('/blogs',middleWare.authorization,blogController.deleteparams)
-
-
-
-
-module.exports=router
+module.exports = router;
