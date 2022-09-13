@@ -20,7 +20,7 @@ const isValidName = function(name) {
 
 const isValidBody = function(data) {
     return Object.keys(data).length>0
-}
+}   
 
 const isValidQuery = function(data){
     return Object.keys(data).length>0
