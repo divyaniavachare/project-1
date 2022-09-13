@@ -111,7 +111,7 @@ const updateBlog = async function (req, res) {
         //edgeCase 5 -- if title is present than it should not be empty
         if (title != null) {
             if (title.length == 0)
-                return res.status(400).send({ statut: false, msg: "Title is is used but it is empty" });
+                return res.status(400).send({ status: false, msg: "Title is is used but it is empty" });
         }
 
         if (title || body || tags || subcategory) {
@@ -134,7 +134,7 @@ const deleteBlog = async function (req, res) {
         if (!validator.isValidId(blogId))
             return res.status(400).send({ status: false, msg: "Invalid blogId" });
 
-        // is blog present ith given blogId
+        // is blog present with given blogId
         let savedData = await blogModel.findById(blogId)
         if (!savedData) {
             return res.status(404).send("No such blogId is present");
@@ -142,7 +142,7 @@ const deleteBlog = async function (req, res) {
         //if it is already deleted
 
         if (savedData.isDeleted)
-            return res.status(404).send({ status: false, msg: "Blog not found may you have already delted :)", });
+            return res.status(404).send({ status: false, msg: "Blog not found may be  you have already deleted :)", });
 
         let updatedata = await blogModel.findByIdAndUpdate(savedData, { $set: { isDeleted: true, deletedAt: new Date() } }, { new: true });
         res.status(200).send({msg: "blog is sucessfully deleted"});
