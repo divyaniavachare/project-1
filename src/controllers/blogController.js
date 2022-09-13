@@ -10,7 +10,7 @@ const createBlog = async function (req, res) {
 
         if (!validator.isValidBody(data)) {
             //checking that body is empty or not
-            return res.status(400).send({ status: false, msg: "Body cannot be empty" });
+            return res.status(400).send({ status: false, msg: "Body cannt be empty" });
         }
 
         //edgeCase1 - 
@@ -145,7 +145,7 @@ const deleteBlog = async function (req, res) {
             return res.status(404).send({ status: false, msg: "Blog not found may you have already delted :)", });
 
         let updatedata = await blogModel.findByIdAndUpdate(savedData, { $set: { isDeleted: true, deletedAt: new Date() } }, { new: true });
-        res.status(200).send();
+        res.status(200).send({msg: "blog is sucessfully deleted"});
     } catch (error) {
         res.status(500).send({ status: false, msg: error.message });
     }
