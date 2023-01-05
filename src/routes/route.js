@@ -7,6 +7,8 @@ const middlewareCV=require("../middleware/middleware")
 
 router.post("/authors", authControl.createAuthor)
 
+router.post("/login",authControl.loginAuthor)
+
 router.post("/blogs",middlewareCV.authentication,blogControl.createBlog)
 
 router.get("/blog",middlewareCV.authentication, blogControl.getBlog)
@@ -16,8 +18,6 @@ router.put("/update/:blogId",middlewareCV.authentication,middlewareCV.authorizat
 router.delete("/deleteBlog/:blogId",middlewareCV.authentication,middlewareCV.authorization,blogControl.deleteBlog)
 
 router.delete("/deleteBlogByQuery",middlewareCV.authentication,middlewareCV.authorization,blogControl.deleteBlogByQuery)
-
-router.post("/login",authControl.loginAuthor)
 
 
 module.exports = router;
