@@ -1,7 +1,4 @@
-                                                                   # first-project-mini-blog-web-site
-                                                                      project mini blog web site///
-                                                                                   Phase I
-
+//mini-bogging-website
 
 Models
 
